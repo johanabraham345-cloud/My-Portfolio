@@ -1,0 +1,764 @@
+@import url('https://fonts.cdnfonts.com/css/gagalin');
+
+/* ==========================================================================
+   BASE & TOKENS
+   ========================================================================== */
+:root {
+    --bg-color: #fcfcfc;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-accent: #6b7280;
+    --border-color: #e5e7eb;
+    --accent-color: #3b82f6;
+    --card-bg: #ffffff;
+    --placeholder-bg: #f3f4f6;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+    /* Expanding to Full Area */
+    --max-width: 1600px;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    --shadow-popover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* ==========================================================================
+   LAYOUT CONTAINERS
+   ========================================================================== */
+.main-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 40px;
+    /* Increased padding for wide screens */
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 32px;
+    height: 3px;
+    background-color: var(--text-primary);
+    border-radius: 4px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0;
+}
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+.header {
+    background-color: rgba(252, 252, 252, 0.85);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Gagalin', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    align-items: center;
+    gap: 80px;
+    padding: 120px 0 100px;
+}
+
+.profile-image-container {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 4px solid var(--border-color);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-intro {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.small-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: -8px;
+    margin-left: 6px;
+}
+
+.hero-name {
+    font-family: 'Gagalin', sans-serif;
+    font-size: 7rem;
+    line-height: 1;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.hero-description {
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   PROJECTS SECTION
+   ========================================================================== */
+.projects-grid {
+    display: grid;
+    /* Wide area allows a 3 column fluid grid */
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* important for popover */
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+    z-index: 20;
+    /* Keep active card above neighbors */
+}
+
+.project-competition {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+
+.project-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+}
+
+.project-date {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: -12px;
+    margin-bottom: 16px;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.project-tech {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+    padding: 16px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.project-tech strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.project-link {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+}
+
+.project-link::after {
+    content: '→';
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+}
+
+.project-card:hover .project-link {
+    color: var(--accent-color);
+}
+
+.project-card:hover .project-link::after {
+    transform: translateX(6px);
+}
+
+/* Hover Popover Styles */
+.project-popover {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 20px);
+    transform: translateY(-50%) translateX(-20px) scale(0.95);
+    width: 480px;
+    background: linear-gradient(145deg, #1f2937, #111827);
+    color: #f3f4f6;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Scrollbar styles for popover */
+.project-popover::-webkit-scrollbar {
+    width: 6px;
+}
+
+.project-popover::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.project-popover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.project-popover::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* If the card is toward the right edge (last in row), popover opens to left */
+/* We simulate this with structural pseudo classes where possible: 
+   On large screens, every 3rd item shows left */
+@media (min-width: 1240px) {
+    .project-card:nth-child(3n) .project-popover {
+        left: auto;
+        right: calc(100% + 20px);
+        transform: translateY(-50%) translateX(20px) scale(0.95);
+    }
+
+    .project-card:nth-child(3n) .project-popover::after {
+        left: auto;
+        right: -40px;
+        width: 40px;
+    }
+}
+
+.project-popover h4 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    color: #ffffff;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+    letter-spacing: 0.02em;
+}
+
+.project-popover p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e5e7eb;
+}
+
+.project-popover ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.project-popover li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e5e7eb;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.project-popover li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.project-popover li:last-child {
+    margin-bottom: 0;
+}
+
+.project-collage {
+    column-count: 2;
+    column-gap: 12px;
+    margin-top: 24px;
+}
+
+.project-collage img {
+    break-inside: avoid;
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.project-collage img:first-child {
+    column-span: all;
+    max-height: 250px;
+}
+
+.project-collage img:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    position: relative;
+}
+
+.project-card:hover .project-popover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0) scale(1);
+    pointer-events: auto;
+    /* Allow interaction with the scrollable area */
+}
+
+/* Invisible bridge to keep hover state active when moving mouse to popover */
+.project-popover::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    bottom: -50px;
+    left: -40px;
+    width: 40px;
+}
+
+/* ==========================================================================
+   SKILLS SECTION
+   ========================================================================== */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.skills-category {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.category-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.skills-list {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.skills-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.skills-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   ABOUT SECTION
+   ========================================================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: stretch;
+}
+
+.about-text {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+.about-collage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+}
+
+.about-collage img {
+    position: absolute;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 4px solid var(--card-bg);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-collage img:hover {
+    transform: scale(1.1) rotate(0deg) !important;
+    z-index: 10 !important;
+}
+
+/* Scattered asymmetrical positioning */
+.about-collage img:nth-child(1) {
+    width: 55%;
+    height: 60%;
+    top: 5%;
+    left: 5%;
+    transform: rotate(-3deg);
+    z-index: 2;
+}
+
+.about-collage img:nth-child(2) {
+    width: 45%;
+    height: 45%;
+    top: 15%;
+    right: 5%;
+    transform: rotate(4deg);
+    z-index: 1;
+}
+
+.about-collage img:nth-child(3) {
+    width: 50%;
+    height: 50%;
+    bottom: 5%;
+    left: 10%;
+    transform: rotate(2deg);
+    z-index: 3;
+}
+
+.about-collage img:nth-child(4) {
+    width: 55%;
+    height: 55%;
+    bottom: 10%;
+    right: 5%;
+    transform: rotate(-2deg);
+    z-index: 4;
+}
+
+.about-collage img:nth-child(5) {
+    width: 40%;
+    height: 40%;
+    top: 35%;
+    left: 30%;
+    transform: rotate(-5deg);
+    z-index: 5;
+    border-color: var(--accent-color);
+}
+
+.about-collage img:nth-child(6) {
+    width: 35%;
+    height: 35%;
+    bottom: 20%;
+    left: 40%;
+    transform: rotate(6deg);
+    z-index: 6;
+}
+
+/* ==========================================================================
+   CONNECT SECTION
+   ========================================================================== */
+.connect-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.connect-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.connect-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-color);
+}
+
+.connect-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    margin-right: 20px;
+    background-color: var(--placeholder-bg);
+    color: var(--text-primary);
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.connect-card:hover .connect-icon {
+    background-color: var(--text-primary);
+    color: white;
+}
+
+.connect-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.connect-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.connect-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    transition: var(--transition);
+}
+
+.connect-card:hover .connect-label {
+    color: var(--accent-color);
+}
+
+.connect-handle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.connect-arrow {
+    margin-left: auto;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: var(--transition);
+}
+
+.connect-card:hover .connect-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .image-placeholder {
+        margin: 0 auto;
+    }
+
+    .hero-intro {
+        align-items: center;
+    }
+
+    .small-text {
+        margin-left: 0;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-name {
+        font-size: 4rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .project-popover {
+        display: none;
+        /* Hide hover popover on small mobile for touch screens */
+    }
+
+    /* Mobile connect grid handled natively via auto-fit */
+}
